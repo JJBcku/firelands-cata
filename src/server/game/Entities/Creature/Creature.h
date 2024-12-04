@@ -216,7 +216,7 @@ class FC_GAME_API Creature : public Unit, public GridObject<Creature>, public Ma
         void AllLootRemovedFromCorpse();
 
         uint16 GetLootMode() const { return m_LootMode; }
-        bool HasLootMode(uint16 lootMode) { return (m_LootMode & lootMode) != 0; }
+        bool HasLootMode(uint16 lootMode) const { return (m_LootMode & lootMode) != 0; }
         void SetLootMode(uint16 lootMode) { m_LootMode = lootMode; }
         void AddLootMode(uint16 lootMode) { m_LootMode |= lootMode; }
         void RemoveLootMode(uint16 lootMode) { m_LootMode &= ~lootMode; }
@@ -286,7 +286,7 @@ class FC_GAME_API Creature : public Unit, public GridObject<Creature>, public Ma
         bool hasQuest(uint32 quest_id) const override;
         bool hasInvolvedQuest(uint32 quest_id)  const override;
 
-        bool isRegeneratingHealth() { return m_regenHealth; }
+        bool isRegeneratingHealth() const { return m_regenHealth; }
         void setRegeneratingHealth(bool regenHealth) { m_regenHealth = regenHealth; }
         virtual uint8 GetPetAutoSpellSize() const { return MAX_SPELL_CHARM; }
         virtual uint32 GetPetAutoSpellOnPos(uint8 pos) const;
@@ -338,7 +338,7 @@ class FC_GAME_API Creature : public Unit, public GridObject<Creature>, public Ma
 
         // There's many places not ready for dynamic spawns. This allows them to live on for now.
         void SetRespawnCompatibilityMode(bool mode = true) { m_respawnCompatibilityMode = mode; }
-        bool GetRespawnCompatibilityMode() { return m_respawnCompatibilityMode; }
+        bool GetRespawnCompatibilityMode() const { return m_respawnCompatibilityMode; }
 
         static float _GetDamageMod(int32 Rank);
 

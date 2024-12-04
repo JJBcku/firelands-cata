@@ -161,7 +161,7 @@ WorldSession::WorldSession(uint32 id, std::string &&name,
 /// WorldSession destructor
 WorldSession::~WorldSession() {
   ///- unload player if not unloaded
-  if (_player) LogoutPlayer(true);
+  if ((m_Socket) && _player) LogoutPlayer(true);
 
   /// - If have unclosed socket, close it
   for (uint8 i = 0; i < 2; ++i) {
@@ -535,6 +535,9 @@ bool WorldSession::Update(uint32 diff, PacketFilter &updater) {
     if ((m_Socket && !m_Socket->IsOpen())) {
       expireTime -= expireTime > diff ? diff : expireTime;
       if (expireTime < diff || forceExit || !GetPlayer()) {
+          if (_player != nullptr && !m_playerRecentlyLogout && !m_playerLogout)
+              LogoutPlayer(true);
+
         if (m_Socket) {
           m_Socket->CloseSocket();
           m_Socket.reset();

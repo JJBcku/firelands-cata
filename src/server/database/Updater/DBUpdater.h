@@ -77,7 +77,7 @@ template <class T> class FC_DATABASE_API DBUpdater
 
     static bool Create(DatabaseWorkerPool<T>& pool);
 
-    static bool Update(DatabaseWorkerPool<T>& pool);
+    //static bool Update(DatabaseWorkerPool<T>& pool);
     static bool Update(DatabaseWorkerPool<T>& pool, std::string_view modulesList = {});
     static bool Update(DatabaseWorkerPool<T>& pool, std::vector<std::string> const* setDirectories);
 

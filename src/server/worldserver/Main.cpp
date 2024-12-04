@@ -422,7 +422,7 @@ void ShutdownCLIThread(std::thread *cliThread)
 {
     if (cliThread != nullptr)
     {
-#if FC_PLATFORM_WINDOWS
+#if FC_PLATFORM == FC_PLATFORM_WINDOWS
         // First try to cancel any I/O in the CLI thread
         if (!CancelSynchronousIo(cliThread->native_handle()))
         {
